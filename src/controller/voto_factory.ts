@@ -1,3 +1,5 @@
+
+
 interface voto {
      voto(message: JSON): void;
 };

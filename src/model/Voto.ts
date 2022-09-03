@@ -1,9 +1,9 @@
-import { DataTypes } from "sequelize/types";
+import sequelize from "sequelize";
 import { database } from "./database";
 
-export const User = database.define("user", {
+export const BancodeDados = database.define("cerveja", {
      voto:{
-          type: DataTypes.STRING,
+          type: sequelize.STRING,
           allowNull: false
      }
 });
