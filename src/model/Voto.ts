@@ -5,5 +5,9 @@ export const BancodeDados = database.define("cerveja", {
      voto:{
           type: sequelize.STRING,
           allowNull: false
+     },
+     email:{
+          type: sequelize.STRING,
+          allowNull: false
      }
 });
