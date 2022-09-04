@@ -1,6 +1,6 @@
 import isEmail from "validator/lib/isEmail";
 
-export interface EmailValidator{
+interface EmailValidator{
      isEmail(value: string): boolean;
 }
 
