@@ -10,7 +10,6 @@ if(!PORT){
  throw console.log('it has no port on the server');
 }
 
-new App().server.listen(PORT, async ()=>{
-     //await database.sync();
+new App().server.listen(PORT, ()=>{
      console.log("IS RUNING")
 });
