@@ -1,7 +1,7 @@
 import { emailValidator_Adapter, validaEmail } from "./emailValidator_Adapter";
 import { votoFactory } from "./voto_factory";
 import { BancodeDados } from "../model/Voto";
-import { AtualizandoBanco } from "./email_service";
+import { AtualizandoBanco } from "./atualizacao_service";
 import { Subject } from "./voto_observer";
 import { Request, Response } from "express";
 
