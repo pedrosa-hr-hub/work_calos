@@ -4,6 +4,7 @@ import { BancodeDados } from "../model/Voto";
 import { AtualizandoBanco } from "./atualizacao_service";
 import { Subject } from "./voto_observer";
 import { Request, Response } from "express";
+import sequelize from "sequelize";
 
 class VotoController{
 
@@ -68,6 +69,20 @@ class VotoController{
                return voto.length > 0
                ? res.send(voto)
                : res.send("Não existe dados salvos no banco");
+               
+          } catch (error) {
+               console.log(error)
+          }
+     }
+
+     async findPercent(req:Request, res: Response){
+          try {          
+               
+               const voto = await BancodeDados.findAll({
+                    attributes: ['voto', [sequelize.fn('count', sequelize.col('voto')), 'cnt']],
+                    group:['voto'],
+               });
+               return res.send(voto)
                
           } catch (error) {
                console.log(error)
