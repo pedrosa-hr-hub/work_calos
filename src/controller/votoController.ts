@@ -20,7 +20,7 @@ class VotoController{
           
                if(validaEmail(new emailValidator_Adapter,emailVoto) === true){
           
-                    if(votofeito === "Haineken" || votofeito === "Budwaiser"){
+                    if(votofeito === "Heineken" || votofeito === "Budweiser"){
                          const voto = votoFactory.createVoto();
           
                          voto.voto(votofeito);
@@ -79,7 +79,7 @@ class VotoController{
           try {          
                
                const voto = await BancodeDados.findAll({
-                    attributes: ['voto', [sequelize.fn('count', sequelize.col('voto')), 'cnt']],
+                    attributes: ['voto', [sequelize.fn('count', sequelize.col('voto')), 'qtd']],
                     group:['voto'],
                });
                return res.send(voto)
