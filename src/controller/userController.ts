@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 class UserController{
 
-     async findAll(req:Request, res: Response){
+     async Validate(req:Request, res: Response){
 
           const user = req.body.email;
           const pass = req.body.voto;
