@@ -1,16 +1,33 @@
 import { BancodeDados } from "../model/Voto";
 import { Request, Response } from "express";
-import sequelize from "sequelize";
 
 class UserController{
 
      async findAll(req:Request, res: Response){
+
+          const user = req.body.email;
+          const pass = req.body.voto;
+
           try {          
-               
-               const user = await BancodeDados.findAll();
-               return user.length > 0
-               ? res.send(user)
-               : res.send("Não existe dados salvos no banco");
+               const seachUser = await BancodeDados.findOne({where: {email: user}});
+
+               if (!seachUser) {
+
+                    res.sendStatus(400);
+
+               } else {
+
+                    const seachPass = await BancodeDados.findOne({where: {voto: pass}});
+
+                    if (!seachPass) {
+                         
+                         res.sendStatus(400);
+
+                    } else {
+                         
+                         res.sendStatus(200);
+                    }
+               }
                
           } catch (error) {
                console.log(error)

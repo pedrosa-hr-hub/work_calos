@@ -33,7 +33,7 @@ class VotoController{
                               estado:estadoVoto
                          });
      
-                         res.send("Voto realiazado!");
+                         res.sendStatus(201);
 
                          const VotoSubject = new Subject();
 
@@ -43,14 +43,14 @@ class VotoController{
           
                     }else{
           
-                         return res.send("Voto invalido!");
+                         return res.sendStatus(400);
           
                     }
           
           
                }else{
                     
-                    return res.send("Email informado é invalido");
+                    return res.sendStatus(400);
                     
                }
                
@@ -68,7 +68,7 @@ class VotoController{
                const voto = await BancodeDados.findAll();
                return voto.length > 0
                ? res.send(voto)
-               : res.send("Não existe dados salvos no banco");
+               : res.sendStatus(400);
                
           } catch (error) {
                console.log(error)
