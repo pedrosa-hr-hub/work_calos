@@ -5,33 +5,30 @@ class UserController{
 
      async Validate(req:Request, res: Response){
 
-          const user = req.body.email;
-          const pass = req.body.voto;
+          const email = req.body.user;
 
-          try {          
-               const seachUser = await BancodeDados.findOne({where: {email: user}});
+          BancodeDados.findOne({where: {email: email}}).then(
+               user => {
+                    if(user == undefined){
+                         res.sendStatus(404);
+                    }else{
 
-               if (!seachUser) {
+                         const voto = req.body.pass;
 
-                    res.sendStatus(400);
-
-               } else {
-
-                    const seachPass = await BancodeDados.findOne({where: {voto: pass}});
-
-                    if (!seachPass) {
-                         
-                         res.sendStatus(400);
-
-                    } else {
-                         
-                         res.sendStatus(200);
+                         BancodeDados.findOne({where: {voto: voto}}).then(
+                              pass =>{
+                                   if(pass == undefined){
+                                        res.sendStatus(404);
+                                   }else{
+                                        res.sendStatus(200);
+                                   }
+                              }
+                         )
                     }
                }
-               
-          } catch (error) {
-               console.log(error)
-          }
+          )
+
+
      }
 }
 
